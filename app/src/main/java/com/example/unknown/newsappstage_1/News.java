@@ -5,12 +5,14 @@ public class News {
     private String mContent;
     private String mType;
     private String mUrl;
+    private String mDate;
 
-    public News(String title, String type, String content, String url) {
+    public News(String title, String type, String content, String url, String date) {
         mTitle = title;
         mContent = content;
         mType = type;
         mUrl = url;
+        mDate = date;
     }
 
     public String getmContent() {
@@ -27,5 +29,9 @@ public class News {
 
     public String getmUrl() {
         return mUrl;
+    }
+
+    public String getmDate() {
+        return mDate;
     }
 }

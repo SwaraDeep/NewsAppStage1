@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_below="@id/title_text"
-        android:layout_margin="8dp"
+        style="@style/dimen"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@android:color/black"
         android:textSize="25sp"
@@ -20,9 +20,7 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:textAppearance="?android:textAppearanceMedium"
+        style="@style/dimen"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -32,18 +30,24 @@
         android:id="@+id/type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/dimen"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
         android:textAppearance="?android:textAppearanceMedium"
         android:textStyle="bold"
-        tools:text="Author Name" />
+        tools:text="Type" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        style="@style/dimen"
+        android:layout_below="@id/main_text"
+        tools:text="2018-01-01" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:background="@android:color/darker_gray" />
 
 </RelativeLayout>

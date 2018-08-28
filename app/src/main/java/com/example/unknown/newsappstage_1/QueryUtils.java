@@ -15,7 +15,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class QueryUtils {
@@ -116,7 +118,9 @@ public final class QueryUtils {
 
                 String url = currentNews.getString("webUrl");
 
-                News n = new News(title, type, content, url);
+                String date = currentNews.getString("webPublicationDate");
+
+                News n = new News(title, type, content, url, date);
 
                 news.add(n);
             }

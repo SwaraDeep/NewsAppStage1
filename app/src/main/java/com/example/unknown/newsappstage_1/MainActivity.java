@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(News_Loader_Id, null, this);
         } else {
-            emptyTextView.setText("Not connected to network");
+            emptyTextView.setText(getString(R.string.no_internet));
             pb.setVisibility(View.GONE);
         }
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         }
 
         TextView emptyTextView = (TextView) findViewById(R.id.empty_view);
-        emptyTextView.setText("no news found");
+        emptyTextView.setText(getString(R.string.no_news));
         ProgressBar pb = (ProgressBar) findViewById(R.id.progress_bar);
         pb.setVisibility(View.GONE);
     }
