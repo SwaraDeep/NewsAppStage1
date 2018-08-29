@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private NewsAdapter mAdapter;
     private static final int News_Loader_Id = 1;
-    private static final String GUARDIANS_NEWS_URL = "https://content.guardianapis.com/search?api-key=5c1b0874-ccaf-41c5-92dc-872d56c90cf1";
+    private static final String GUARDIANS_NEWS_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=5c1b0874-ccaf-41c5-92dc-872d56c90cf1";
 
 
     @Override

@@ -120,7 +120,13 @@ public final class QueryUtils {
 
                 String date = currentNews.getString("webPublicationDate");
 
-                News n = new News(title, type, content, url, date);
+                JSONArray tags = currentNews.getJSONArray("tags");
+
+                JSONObject jo = tags.getJSONObject(0);
+
+                String author = jo.getString("webTitle");
+
+                News n = new News(title, type, content, url, date, "by ".concat(author));
 
                 news.add(n);
             }
