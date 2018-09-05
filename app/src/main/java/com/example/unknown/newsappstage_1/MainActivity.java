@@ -28,8 +28,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<News>> {
 
     private NewsAdapter mAdapter;
+    private static final String ApiKey = "5c1b0874-ccaf-41c5-92dc-872d56c90cf1";
     private static final int News_Loader_Id = 1;
-    //private static final String GUARDIANS_NEWS_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=5c1b0874-ccaf-41c5-92dc-872d56c90cf1";
     private static final String GUARDIANS_NEWS_URL = "https://content.guardianapis.com/search";
 
     @Override
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         if (!section.equals(getString(R.string.settings_section_default))) {
             uriBuilder.appendQueryParameter("section", section);
         }
-        uriBuilder.appendQueryParameter("api-key", "5c1b0874-ccaf-41c5-92dc-872d56c90cf1");
+        uriBuilder.appendQueryParameter("api-key", ApiKey);
 
         Log.v("GUARDIANS URL: ", uriBuilder.toString());
         return new NewsLoader(this, uriBuilder.toString());
@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the Options Menu we specified in XML
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }

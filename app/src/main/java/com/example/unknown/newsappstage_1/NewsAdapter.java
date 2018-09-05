@@ -28,7 +28,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView mainTextView = (TextView) listitemview.findViewById(R.id.main_text);
         TextView titleTextView = (TextView) listitemview.findViewById(R.id.title_text);
         TextView typeOfNews = (TextView) listitemview.findViewById(R.id.type);
-        TextView date = (TextView)listitemview.findViewById(R.id.date);
+        TextView date = (TextView) listitemview.findViewById(R.id.date);
         TextView author = (TextView) listitemview.findViewById(R.id.author_name);
         mainTextView.setText(currentNews.getmContent());
         titleTextView.setText(currentNews.getmTitle());
@@ -39,7 +39,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         return listitemview;
     }
 
-    public String getDate(String date){
+    public String getDate(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
         Date d = null;

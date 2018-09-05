@@ -23,6 +23,8 @@ import java.util.List;
 public final class QueryUtils {
 
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
+    private static final int ReadTimeOut = 10000;
+    private static final int ConnectTimeOut = 15000;
 
     private QueryUtils() {
     }
@@ -35,8 +37,8 @@ public final class QueryUtils {
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
-        List<News> Newss = extractFeatureFromJson(jsonResponse);
-        return Newss;
+        List<News> News = extractFeatureFromJson(jsonResponse);
+        return News;
     }
 
     private static URL createUrl(String stringUrl) {
@@ -58,8 +60,8 @@ public final class QueryUtils {
         InputStream inputStream = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
+            urlConnection.setReadTimeout(ReadTimeOut);
+            urlConnection.setConnectTimeout(ConnectTimeOut);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
             if (urlConnection.getResponseCode() == 200) {
@@ -110,15 +112,15 @@ public final class QueryUtils {
 
                 JSONObject currentNews = results.getJSONObject(i);
 
-                String type = currentNews.getString("type");
+                String type = currentNews.optString("type");
 
-                String title = currentNews.getString("sectionName");
+                String title = currentNews.optString("sectionName");
 
-                String content = currentNews.getString("webTitle");
+                String content = currentNews.optString("webTitle");
 
-                String url = currentNews.getString("webUrl");
+                String url = currentNews.optString("webUrl");
 
-                String date = currentNews.getString("webPublicationDate");
+                String date = currentNews.optString("webPublicationDate");
 
                 String author;
                 try {
@@ -127,7 +129,7 @@ public final class QueryUtils {
                     author = jo.getString("webTitle");
                 } catch (Exception e) {
                     author = "unknown";
-                    Log.v("Excptn at authors tag", "No author avaiable");
+                    Log.v("Excptn at authors tag", "No author available");
                 }
 
                 News n = new News(title, type, content, url, date, "by ".concat(author));
