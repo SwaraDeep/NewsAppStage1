@@ -5,12 +5,17 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private NewsAdapter mAdapter;
     private static final int News_Loader_Id = 1;
-    private static final String GUARDIANS_NEWS_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=5c1b0874-ccaf-41c5-92dc-872d56c90cf1";
-
+    //private static final String GUARDIANS_NEWS_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=5c1b0874-ccaf-41c5-92dc-872d56c90cf1";
+    private static final String GUARDIANS_NEWS_URL = "https://content.guardianapis.com/search";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +72,26 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     @NonNull
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-        return new NewsLoader(this, GUARDIANS_NEWS_URL);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String minNews = sharedPrefs.getString(getString(R.string.settings_no_of_news_key), getString(R.string.settings_no_of_news_default));
+        String orderBy = sharedPrefs.getString(getString(R.string.settings_order_by_key), getString(R.string.settings_order_by_default));
+        String section = sharedPrefs.getString(getString(R.string.settings_section_key), getString(R.string.settings_section_default));
+
+        Uri baseUri = Uri.parse(GUARDIANS_NEWS_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("page-size", minNews);
+        uriBuilder.appendQueryParameter("order-by", orderBy);
+        if (!section.equals(getString(R.string.settings_section_default))) {
+            uriBuilder.appendQueryParameter("section", section);
+        }
+        uriBuilder.appendQueryParameter("api-key", "5c1b0874-ccaf-41c5-92dc-872d56c90cf1");
+
+        Log.v("GUARDIANS URL: ", uriBuilder.toString());
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
@@ -88,5 +112,21 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         mAdapter.clear();
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options Menu we specified in XML
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
