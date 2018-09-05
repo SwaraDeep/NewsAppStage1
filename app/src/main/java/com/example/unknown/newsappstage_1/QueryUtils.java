@@ -120,11 +120,15 @@ public final class QueryUtils {
 
                 String date = currentNews.getString("webPublicationDate");
 
-                JSONArray tags = currentNews.getJSONArray("tags");
-
-                JSONObject jo = tags.getJSONObject(0);
-
-                String author = jo.getString("webTitle");
+                String author;
+                try {
+                    JSONArray tags = currentNews.getJSONArray("tags");
+                    JSONObject jo = tags.getJSONObject(0);
+                    author = jo.getString("webTitle");
+                } catch (Exception e) {
+                    author = "unknown";
+                    Log.v("Excptn at authors tag", "No author avaiable");
+                }
 
                 News n = new News(title, type, content, url, date, "by ".concat(author));
 

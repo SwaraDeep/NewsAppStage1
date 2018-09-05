@@ -5,7 +5,6 @@
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">News Settings</string>
 
-
     <string name="settings_no_of_news_label">No of items</string>
     <string name="settings_no_of_news_key" translatable="false">min_news</string>
     <string name="settings_no_of_news_default" translatable="false">10</string>
@@ -48,26 +47,4 @@
     <string name="settings_section_Film_label">Film</string>
     <string name="settings_section_Film_value" translatable="false">film</string>
 
-
-    <!--string name="settings_type_label">Type of news</string>
-    <string name="settings_type_key" translatable="false">section</string>
-    <string name="settings_type_default" translatable="false">@string/settings_type_of_news_article_label</string>
-
-    <string name="settings_category_label">Category</string>
-    <string name="settings_category_key" translatable="false">category</string>
-    <string name="settings_category_default" translatable="false">@string/settings_category_sports_label</string>
-
-
-    <string name="settings_type_of_news_article_label">Article</string>
-    <string name="settings_type_of_news_article_value" translatable="false">article</string>
-
-    <string name="settings_type_of_news_live_blog_label">Live Blog</string>
-    <string name="settings_type_of_news_live_blog_value" translatable="false">liveblog</string>
-
-
-    <string name="settings_category_sports_label">Sports</string>
-    <string name="settings_category_sports_value" translatable="false">sports</string>
-
-    <string name="settings_category_technology_label">Technology</string>
-    <string name="settings_category_technology_value" translatable="false">technology</string-->
 </resources>
